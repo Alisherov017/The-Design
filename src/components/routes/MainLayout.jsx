@@ -1,13 +1,14 @@
 import React from "react";
 import Navbar from "../navbar/Navbar";
+import { Outlet } from "react-router-dom";
 
-const Error = () => {
+const MainLayout = () => {
   return (
     <div>
       <Navbar />
-      Something went wrong!
+      <Outlet />
     </div>
   );
 };
 
-export default Error;
+export default MainLayout;
