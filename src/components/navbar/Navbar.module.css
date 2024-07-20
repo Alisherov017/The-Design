@@ -2,18 +2,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 97.4%; /* Ширина 100% для адаптивного дизайна */
+  width: 100%;
   height: 14vh;
+  position: relative; /* Добавлено */
 }
 
 .navbarMenu {
   display: flex;
   list-style: none;
-  padding: 0;
-  margin: 0;
 }
 
 .navbarItem {
@@ -37,33 +35,64 @@
   margin-left: 5px;
 }
 
-.navbarLogo a {
-  text-decoration: none;
-  color: #333333;
-  font-size: 24px;
-  font-weight: bold;
+.navbarLogo {
+  position: absolute; /* Добавлено */
+  left: 50%; /* Добавлено */
+  transform: translateX(-50%); /* Добавлено */
+}
+
+.navbarLogo img {
+  display: block;
 }
 
 .navbarSearch {
   display: flex;
   align-items: center;
+  margin-right: 6vw;
 }
 
-.navbarSearch input {
-  padding: 5px 10px;
-  border: 1px solid #cccccc;
-  border-radius: 20px;
-  outline: none;
-  margin-right: 10px;
+/* ! search*/
+.InputContainer {
+  width: 270px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    to bottom,
+    rgb(227, 213, 255),
+    rgb(255, 231, 231)
+  );
+  border-radius: 30px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
 }
+
+.input {
+  width: 230px;
+  height: 40px;
+  border: none;
+  outline: none;
+  caret-color: rgb(255, 81, 0);
+  background-color: rgb(255, 255, 255);
+  border-radius: 30px;
+  padding-left: 15px;
+  letter-spacing: 0.8px;
+  color: rgb(19, 19, 19);
+  font-size: 13.4px;
+}
+/* ! */
 
 .navbarProfile {
-  width: 32px;
-  height: 32px;
+  margin-left: 7%;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
+  background-color: #f6f3f3;
 }
 
-/* ! адаптивка */
+/* Адаптивный дизайн */
 @media (max-width: 768px) {
   .navbarMenu {
     display: none; /* Скрыть меню на маленьких экранах */

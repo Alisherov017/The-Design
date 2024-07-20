@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Navbar.module.css";
 import profileImage from "../../assets/images/logo.svg"; // Добавьте изображение профиля в ту же папку
 import { Link } from "react-router-dom";
+import userLogo from "../../assets/images/user logo.webp";
 
 const Navbar = () => {
   return (
@@ -28,12 +29,16 @@ const Navbar = () => {
         </Link>
       </div>
       <div className={styles.navbarSearch}>
-        <input type="text" placeholder="Search..." />
-        <img
-          src={profileImage}
-          alt="Profile"
-          className={styles.navbarProfile}
-        />
+        <div className={styles.InputContainer}>
+          <input
+            placeholder="Search.."
+            id="input"
+            className={styles.input}
+            name="text"
+            type="text"
+          />
+        </div>
+        <img src={userLogo} alt="Profile" className={styles.navbarProfile} />
       </div>
     </nav>
   );
