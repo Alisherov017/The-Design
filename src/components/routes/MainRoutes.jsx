@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import Designers from "../pages/Designers";
+import Designers from "../pages/designers/Designers";
 import Error from "../error/Error";
 import MainLayout from "./MainLayout";
 

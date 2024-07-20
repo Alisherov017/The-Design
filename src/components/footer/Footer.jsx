@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./Footer.module.css";
-import logo from "../assets/image.svg";
-import twitterIcon from "../assets/twitter-icon.webp";
-import facebookIcon from "../assets/facebook-app-round-icon.webp";
-import instagramIcon from "../assets/images (1).png";
-import pinterestIcon from "../assets/Pinterest_font_awesome.svg.png";
+import logo from "../../assets/images/image.svg";
+import twitterIcon from "../../assets/images/twitter-icon.webp";
+import facebookIcon from "../../assets/images/facebook-app-round-icon.webp";
+import instagramIcon from "../../assets/images/insta.png";
+import pinterestIcon from "../../assets/images/Pinterest_font_awesome.svg.png";
 
 const Footer = () => {
   return (
