@@ -1,3 +1,4 @@
+
 // import React from "react";
 // import "./Footer.css";
 // import logo from "../assets/image.svg";
@@ -225,6 +226,4 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
 
-export default Footer;

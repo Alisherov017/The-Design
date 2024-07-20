@@ -1,0 +1,75 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 97.4%; /* Ширина 100% для адаптивного дизайна */
+  height: 14vh;
+}
+
+.navbarMenu {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbarItem {
+  margin-right: 20px;
+  font-weight: 600;
+}
+
+.navbarItem a {
+  text-decoration: none;
+  color: #333333;
+  font-size: 16px;
+  position: relative;
+}
+
+.navbarItem a:hover {
+  color: #000000;
+}
+
+.navbarItem span {
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.navbarLogo a {
+  text-decoration: none;
+  color: #333333;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbarSearch {
+  display: flex;
+  align-items: center;
+}
+
+.navbarSearch input {
+  padding: 5px 10px;
+  border: 1px solid #cccccc;
+  border-radius: 20px;
+  outline: none;
+  margin-right: 10px;
+}
+
+.navbarProfile {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+/* ! адаптивка */
+@media (max-width: 768px) {
+  .navbarMenu {
+    display: none; /* Скрыть меню на маленьких экранах */
+  }
+
+  .navbarSearch {
+    width: 100%; /* Ширина 100% для поиска на маленьких экранах */
+  }
+}
