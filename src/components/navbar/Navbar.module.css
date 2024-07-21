@@ -1,3 +1,7 @@
+a {
+  text-decoration: none; /* Общее правило для всех ссылок */
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -150,6 +154,61 @@
   margin-bottom: 25px;
   margin-top: 10px;
 }
+
+/* ! buttons */
+.btn {
+  width: 6.2em;
+  height: 3.1em;
+  margin: 0.5em;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 2em;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+button:hover {
+  color: black;
+}
+
+button:after {
+  content: "";
+  background: white;
+  position: absolute;
+  z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
+}
+
+button:hover:after {
+  transform: skewX(-45deg) scale(1, 1);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+/* ? logIn */
+.logIn {
+  padding: 5px;
+  margin-left: 10px;
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+  color: black;
+}
+/* ? */
+
+/* ! */
 
 /* !Адаптивный дизайн */
 @media (max-width: 768px) {

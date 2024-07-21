@@ -1,20 +1,26 @@
 import React, { useState } from "react";
 import styles from "./Navbar.module.css";
-import profileImage from "../../assets/images/logo.svg"; // Добавьте изображение профиля в ту же папку
+import profileImage from "../../assets/images/logo.svg";
 import { Link } from "react-router-dom";
 import userLogo from "../../assets/images/user logo.webp";
+import { useDispatch, useSelector } from "react-redux";
 
 const Navbar = () => {
-  // сonst [(isModalOpen, setModalOpen)] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
 
   const openModal = () => {
     setModalOpen(true);
   };
-
   const closeModal = () => {
     setModalOpen(false);
   };
+
+  // const handleLogout = () => {
+  //   dispatch(logout());
+  //   closeModal();
+  // };
 
   return (
     <>
@@ -50,12 +56,23 @@ const Navbar = () => {
               type="text"
             />
           </div>
-          <img
-            onClick={openModal}
-            src={userLogo}
-            alt="Profile"
-            className={styles.navbarProfile}
-          />
+          {isLoggedIn ? (
+            <img
+              onClick={openModal}
+              src={userLogo}
+              alt="Profile"
+              className={styles.navbarProfile}
+            />
+          ) : (
+            <div className={styles.authButtons}>
+              <Link to="/login">
+                <span className={styles.logIn}>Log In </span>
+              </Link>
+              <Link to="/register">
+                <button className={styles.btn}>Sign Up</button>
+              </Link>
+            </div>
+          )}
         </div>
       </nav>
       {isModalOpen && (
@@ -70,7 +87,7 @@ const Navbar = () => {
                 alt="Profile"
                 className={styles.profileImage}
               />
-              <p>Ruslan Alisherov</p>
+              <p>{user ? user.name : "User"}</p>
               <ul className={styles.menu}>
                 <li>Upload design work</li>
                 <li>Work preferences</li>
