@@ -1,10 +1,13 @@
-// src/components/SignIn.js
 import React, { useState } from "react";
 import styles from "./auth.module.css";
-// import leftSign from "../../assets/images/sign up left.png";
 import google from "../../assets/images/icons8-google.svg";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const SignIn = () => {
+  const dispatch = useDispatch();
+  const [formData, setFormData] = useState({ email: "", password: "" });
+
   return (
     <div className={styles.signInContainer}>
       <div className={styles.videoSection}>
@@ -15,9 +18,6 @@ const SignIn = () => {
           />
         </video>
       </div>
-      {/* <div>
-        <img className={styles.imageSection} src={leftSign} alt="" />
-      </div> */}
       <div className={styles.formSection}>
         <h2>Sign in to Dribbble</h2>
         <span className={styles.googleSignIn}>
@@ -39,7 +39,7 @@ const SignIn = () => {
           </span>
         </form>
         <p className={styles.account}>
-          Don't have an account? <a href="/sign-up">Sign up</a>
+          Don't have an account? <Link to="/register">Sign up</Link>
         </p>
       </div>
     </div>

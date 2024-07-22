@@ -30,42 +30,6 @@ h2 {
   margin-bottom: 0px;
 }
 
-.googleSignIn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 416px;
-  height: 56px;
-  color: black;
-  border: 1px solid #ddd;
-  border-radius: 45px;
-  cursor: pointer;
-  font-size: 13.56px;
-  font-weight: 600;
-  margin-top: 40px;
-}
-
-#googleIcon {
-  width: 38px;
-  height: 26px;
-  margin-right: 10px;
-}
-
-.seperate {
-  text-align: center;
-  display: flex;
-  align-items: center;
-  color: #6e6d7a;
-}
-
-.seperate::before,
-.seperate::after {
-  content: "";
-  flex: 1;
-  border-top: 1px solid #6e6d7a; /* Серая линия */
-  margin: 0 10px;
-}
-
 form {
   display: flex;
   flex-direction: column;
@@ -89,8 +53,16 @@ input {
   width: 416px;
   height: 56px;
   border-radius: 45px;
-  font-size: 13.89px;
+  font-size: 16px;
   font-weight: 600;
+  border: none; /* Убираем границу по умолчанию */
+  text-align: center; /* Центрируем текст */
+  outline: none; /* Убираем обводку при фокусе */
+  box-shadow: none; /* Убираем тень по умолчанию */
+}
+
+.spann:hover {
+  color: #fff; /* Изменяем цвет текста при наведении */
 }
 
 h3 {
@@ -110,8 +82,9 @@ label {
 .account {
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: space-around; */
   color: #6e6d7a;
+  margin-left: 80px;
 }
 
 .account a {
@@ -119,3 +92,30 @@ label {
   color: black;
   text-decoration: underline;
 }
+
+#Username {
+  margin-top: 30px;
+}
+
+/* !чекбокс */
+/* .container {
+  display: flex;
+  width: 100%;
+}
+
+.checkbox {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.labellll {
+  font-size: 14px;
+  color: #000;
+  display: flex;
+}
+
+.link {
+  text-decoration: underline;
+  margin: 0 5px;
+} */
