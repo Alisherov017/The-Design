@@ -1,47 +1,49 @@
-import React from "react";
+// src/components/SignIn.js
+import React, { useState } from "react";
 import styles from "./auth.module.css";
-import signInImage from "../../assets/images/sign up left.png";
+// import leftSign from "../../assets/images/sign up left.png";
+import google from "../../assets/images/icons8-google.svg";
 
-const Login = () => {
+const SignIn = () => {
   return (
-    <div className={styles.container}>
-      <div className={styles.leftSide}>
-        <img src={signInImage} alt="Sign In" className={styles.image} />
+    <div className={styles.signInContainer}>
+      <div className={styles.videoSection}>
+        <video className={styles.video} autoPlay muted loop>
+          <source
+            src="https://cdn.dribbble.com/uploads/48226/original/b8bd4e4273cceae2889d9d259b04f732.mp4?1689028949"
+            type="video/mp4"
+          />
+        </video>
       </div>
-      <div className={styles.rightSide}>
-        <h1>Sign in to Dribbble</h1>
-        <button className={styles.googleSignIn}>
-          <img
-            src="https://img.icons8.com/color/48/000000/google-logo.png"
-            alt="Google"
-          />
+      {/* <div>
+        <img className={styles.imageSection} src={leftSign} alt="" />
+      </div> */}
+      <div className={styles.formSection}>
+        <h2>Sign in to Dribbble</h2>
+        <span className={styles.googleSignIn}>
+          <img id={styles.googleIcon} src={google} alt="" />
           Sign in with Google
-        </button>
-        <p>or sign in with email</p>
+        </span>
+        <p className={styles.seperate}>or sign in with email</p>
         <form>
-          <input
-            type="text"
-            placeholder="Username or Email"
-            className={styles.inputField}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            className={styles.inputField}
-          />
-          <a href="#" className={styles.forgotPassword}>
-            Forgot password?
-          </a>
-          <button type="submit" className={styles.signInButton}>
+          <label>
+            <h3>Username or Email</h3>
+            <input type="text" name="username" />
+          </label>
+          <label>
+            <h3 id={styles.password}>Password</h3>
+            <input type="password" name="password" />
+          </label>
+          <span className={styles.spann} type="submit">
             Sign In
-          </button>
+          </span>
         </form>
-        <p>
-          Don't have an account? <a href="#">Sign up</a>
+        <p className={styles.account}>
+          Don't have an account? <a href="/sign-up">Sign up</a>
         </p>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default SignIn;
