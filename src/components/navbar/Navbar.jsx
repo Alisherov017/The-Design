@@ -4,11 +4,15 @@ import profileImage from "../../assets/images/logo.svg";
 import { Link } from "react-router-dom";
 import userLogo from "../../assets/images/user logo.webp";
 import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../store/slices/Auth.slice";
 
 const Navbar = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
-  const { isLoggedIn, user } = useSelector((state) => state.auth);
+  const { isLoggedIn, user, token } = useSelector((state) => state.auth);
+  console.log(user, "user навбар  ");
+  console.log(isLoggedIn, "isLoggedIn  навбар");
+  console.log(token, "token  навбар");
 
   const openModal = () => {
     setModalOpen(true);
@@ -17,10 +21,10 @@ const Navbar = () => {
     setModalOpen(false);
   };
 
-  // const handleLogout = () => {
-  //   dispatch(logout());
-  //   closeModal();
-  // };
+  const handleLogout = () => {
+    dispatch(logout());
+    closeModal();
+  };
 
   return (
     <>

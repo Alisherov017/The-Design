@@ -92,6 +92,9 @@ input {
   font-size: 13.89px;
   font-weight: 600;
 }
+.spann:hover {
+  color: white;
+}
 
 h3 {
   font-size: 15px;

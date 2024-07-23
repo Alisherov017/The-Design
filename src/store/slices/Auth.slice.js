@@ -8,6 +8,8 @@ export const registerUser = createAsyncThunk(
     try {
       const response = await axios.post(`${API}/register/`, userData);
       console.log(response, "response");
+      console.log("Response from loginUser:", response.data);
+      console.log(userData, "userData registerUser");
       return response.data;
     } catch (error) {
       console.log("register error:", error);
@@ -21,6 +23,7 @@ export const loginUser = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const response = await axios.post(`${API}/login/`, userData);
+      console.log("Response from loginUser:", response.data);
       return response.data;
     } catch (error) {
       console.log("Login error:", error);
