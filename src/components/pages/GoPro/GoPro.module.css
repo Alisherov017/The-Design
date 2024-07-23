@@ -1,0 +1,60 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  padding-top: 0;
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: normal;
+  margin-top: 0px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-top: 0rem;
+  max-width: 100%;
+}
+
+.protitle {
+  font-size: 14px; /* Размер шрифта заголовка */
+  font-weight: bold; /* Сделать текст жирным */
+  color: #f82eab; /* Цвет текста */
+  margin: 20px 0px; /* Отступы сверху и снизу */
+  text-transform: uppercase; /* Преобразовать текст в верхний регистр */
+}
+
+.description {
+  font-size: 55px; /* Размер шрифта описания */
+  font-weight: bold;
+  color: #7132f9; /* Цвет текста */
+  margin-top: 10px; /* Отступ сверху */
+}
+
+.button {
+  margin-top: 20px;
+  padding: 17px 40px;
+  font-size: 16px;
+
+  background-color: #131415;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #66696c;
+}
