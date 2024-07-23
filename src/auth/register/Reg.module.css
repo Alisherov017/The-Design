@@ -1,0 +1,121 @@
+.signInContainer {
+  display: flex;
+  height: 100vh;
+}
+
+/* ! video */
+.videoSection {
+  height: 100vh;
+  width: 400px;
+  margin-right: 130px;
+  overflow: hidden;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.formSection {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h2 {
+  font-size: 23.81px;
+  font-weight: 700;
+  margin-bottom: 0px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 416px;
+  height: 56px;
+}
+
+.spann {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(13, 12, 34);
+  color: white;
+  cursor: pointer;
+  width: 416px;
+  height: 56px;
+  border-radius: 45px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none; /* Убираем границу по умолчанию */
+  text-align: center; /* Центрируем текст */
+  outline: none; /* Убираем обводку при фокусе */
+  box-shadow: none; /* Убираем тень по умолчанию */
+}
+
+.spann:hover {
+  color: #fff; /* Изменяем цвет текста при наведении */
+}
+
+h3 {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+#password {
+  margin-top: 20px;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-around; */
+  color: #6e6d7a;
+  margin-left: 80px;
+}
+
+.account a {
+  margin-left: 10px;
+  color: black;
+  text-decoration: underline;
+}
+
+#Username {
+  margin-top: 30px;
+}
+
+/* !чекбокс */
+/* .container {
+  display: flex;
+  width: 100%;
+}
+
+.checkbox {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.labellll {
+  font-size: 14px;
+  color: #000;
+  display: flex;
+}
+
+.link {
+  text-decoration: underline;
+  margin: 0 5px;
+} */

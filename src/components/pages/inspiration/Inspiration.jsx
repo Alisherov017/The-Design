@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Inspiration.jsx
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -34,3 +35,14 @@ const Inspiration = () => {
 };
 
 export default Inspiration;
+=======
+import React from 'react'
+
+const Inspiration = () => {
+  return (
+    <div>Inspiration</div>
+  )
+}
+
+export default Inspiration
+>>>>>>> origin

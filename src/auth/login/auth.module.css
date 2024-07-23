@@ -1,0 +1,121 @@
+.signInContainer {
+  display: flex;
+  height: 100vh;
+}
+
+/* ! video */
+.videoSection {
+  height: 100vh;
+  width: 400px;
+  margin-right: 130px;
+  overflow: hidden;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.formSection {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h2 {
+  font-size: 23.81px;
+  font-weight: 700;
+  margin-bottom: 0px;
+}
+
+.googleSignIn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 416px;
+  height: 56px;
+  color: black;
+  border: 1px solid #ddd;
+  border-radius: 45px;
+  cursor: pointer;
+  font-size: 13.56px;
+  font-weight: 600;
+  margin-top: 40px;
+}
+
+#googleIcon {
+  width: 38px;
+  height: 26px;
+  margin-right: 10px;
+}
+
+.seperate {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  color: #6e6d7a;
+}
+
+.seperate::before,
+.seperate::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid #6e6d7a; /* Серая линия */
+  margin: 0 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 416px;
+  height: 56px;
+}
+
+.spann {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(13, 12, 34);
+  color: white;
+  cursor: pointer;
+  width: 416px;
+  height: 56px;
+  border-radius: 45px;
+  font-size: 13.89px;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+#password {
+  margin-top: 20px;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6e6d7a;
+}
+
+.account a {
+  margin-left: 10px;
+  color: black;
+  text-decoration: underline;
+}
