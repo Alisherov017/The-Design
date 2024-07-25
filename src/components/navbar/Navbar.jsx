@@ -86,18 +86,22 @@ const Navbar = () => {
               className={styles.modalContent}
               onClick={(e) => e.stopPropagation()}
             >
-              <img
-                src={userLogo}
-                alt="Profile"
-                className={styles.profileImage}
-              />
-              <p>{user ? user.name : "User"}</p>
+              <div>
+                <Link to="/profile">
+                  <img
+                    src={userLogo}
+                    alt="Profile"
+                    className={styles.profileImage}
+                  />
+                </Link>
+              </div>
+              <p>{user ? user.first_name : "User"}</p>
               <ul className={styles.menu}>
                 <li>Upload design work</li>
                 <li>Work preferences</li>
                 <li id={styles.setting}>Settings</li>
                 <hr />
-                <li>Sign out</li>
+                <li onClick={handleLogout}>Sign out</li>
               </ul>
             </div>
           </div>

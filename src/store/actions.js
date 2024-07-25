@@ -29,3 +29,23 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
+
+export const updateUserProfile = createAsyncThunk(
+  "auth/updateUserProfile",
+  async (formData, thunkAPI) => {
+    const token = JSON.parse(localStorage.getItem("authToken"))?.token;
+    try {
+      const response = await axios.post(`${API}/user-profile/`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response.data,
+        "updateUserProfile error"
+      );
+    }
+  }
+);

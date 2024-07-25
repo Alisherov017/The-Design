@@ -5,7 +5,6 @@ import Footer from "../footer/Footer";
 
 const MainLayout = () => {
   const location = useLocation();
-  // console.log(location, "locaiton");
   const hideNavbarPaths = ["/login", "/register"];
   const shouldHideNavbar = hideNavbarPaths.includes(location.pathname);
 

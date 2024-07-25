@@ -21,11 +21,11 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const result = await dispatch(loginUser(formData)).unwrap(); // Получаем результат
-      console.log("Login result:", result); // Логируем результат
-      navigate("/"); // Редирект на домашнюю страницу после успешного входа
+      const result = await dispatch(loginUser(formData)).unwrap();
+      console.log("Login result:", result);
+      navigate("/");
     } catch (error) {
-      console.error("Login error:", error); // Логируем ошибку
+      console.error("Login error:", error);
     }
   };
   return (
@@ -47,7 +47,7 @@ const SignIn = () => {
         <p className={styles.seperate}>or sign in with email</p>
         <form onSubmit={handleSubmit}>
           <label>
-            <h3>Username or Email</h3>
+            <h3>Email</h3>
             <input
               type="text"
               name="email"

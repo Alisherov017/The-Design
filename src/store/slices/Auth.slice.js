@@ -1,43 +1,12 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-const API = "https://designhub-akrq.onrender.com";
-
-export const registerUser = createAsyncThunk(
-  "auth/registerUser",
-  async (userData, thunkAPI) => {
-    try {
-      const response = await axios.post(`${API}/register/`, userData);
-      console.log(response, "response");
-      console.log("Response from loginUser:", response.data);
-      console.log(userData, "userData registerUser");
-      return response.data;
-    } catch (error) {
-      console.log("register error:", error);
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
-  }
-);
-
-export const loginUser = createAsyncThunk(
-  "auth/loginUser",
-  async (userData, thunkAPI) => {
-    try {
-      const response = await axios.post(`${API}/login/`, userData);
-      console.log("Response from loginUser:", response.data);
-      return response.data;
-    } catch (error) {
-      console.log("Login error:", error);
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
-  }
-);
+import { createSlice } from "@reduxjs/toolkit";
+import { loginUser, registerUser, updateUserProfile } from "../actions";
 
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    user: null,
-    token: localStorage.getItem("authToken") || null,
-    isLoggedIn: false,
+    user: JSON.parse(localStorage.getItem("authToken"))?.user || null,
+    token: JSON.parse(localStorage.getItem("authToken"))?.token || null,
+    isLoggedIn: !!localStorage.getItem("authToken"),
     status: "idle",
     error: null,
   },
@@ -53,9 +22,15 @@ const authSlice = createSlice({
     builder
       .addCase(registerUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.token = action.payload.access;
         state.isLoggedIn = true;
-        localStorage.setItem("authToken", action.payload.token);
+        localStorage.setItem(
+          "authToken",
+          JSON.stringify({
+            token: action.payload.access,
+            user: action.payload.user,
+          })
+        );
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.error = action.payload;
@@ -64,9 +39,21 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
-        localStorage.setItem("authToken", action.payload.token);
+        localStorage.setItem(
+          "authToken",
+          JSON.stringify({
+            token: action.payload.access,
+            user: action.payload.user,
+          })
+        );
       })
       .addCase(loginUser.rejected, (state, action) => {
+        state.error = action.payload;
+      })
+      .addCase(updateUserProfile.fulfilled, (state, action) => {
+        state.user = action.payload;
+      })
+      .addCase(updateUserProfile.rejected, (state, action) => {
         state.error = action.payload;
       });
   },
