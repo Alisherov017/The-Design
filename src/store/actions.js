@@ -34,13 +34,20 @@ export const updateUserProfile = createAsyncThunk(
   "auth/updateUserProfile",
   async (formData, thunkAPI) => {
     const token = JSON.parse(localStorage.getItem("authToken"))?.token;
+    const userId = JSON.parse(localStorage.getItem("authToken"))?.user.id;
+    console.log(userId, "userId updateUserProfile");
     try {
-      const response = await axios.post(`${API}/user-profile/`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.put(
+        `${API}/user-profile/${userId}/`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response.data,

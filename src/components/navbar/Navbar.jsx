@@ -89,6 +89,7 @@ const Navbar = () => {
               <div>
                 <Link to="/profile">
                   <img
+                    onClick={closeModal}
                     src={userLogo}
                     alt="Profile"
                     className={styles.profileImage}
@@ -98,7 +99,9 @@ const Navbar = () => {
               <p>{user ? user.first_name : "User"}</p>
               <ul className={styles.menu}>
                 <li>Upload design work</li>
-                <li>Work preferences</li>
+                <Link to="/editProfile">
+                  <li onClick={closeModal}> Edit profile</li>
+                </Link>
                 <li id={styles.setting}>Settings</li>
                 <hr />
                 <li onClick={handleLogout}>Sign out</li>
