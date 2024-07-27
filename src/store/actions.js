@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios, { formToJSON } from "axios";
 
 const API = "https://designhub-akrq.onrender.com";
 
@@ -38,7 +38,7 @@ export const updateUserProfile = createAsyncThunk(
     console.log(userId, "userId updateUserProfile");
     try {
       const response = await axios.put(
-        `${API}/user-profile/${userId}/`,
+        `${API}/user-profile/:${userId}/`,
         formData,
         {
           headers: {
@@ -56,3 +56,35 @@ export const updateUserProfile = createAsyncThunk(
     }
   }
 );
+
+export const addDesigneWork = createAsyncThunk(
+  "designe/addDesigneWork",
+  async (formData, thunkAPI) => {
+    try {
+      const responce = await axios.post(`${API}/designes/`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      return responce.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.responce.data);
+    }
+  }
+);
+
+// export const addDesigneWork = createAsyncThunk(
+//   "designe/addDesigneWork",
+//   async (formData, thunkAPI) => {
+//     try {
+//       const response = await axios.post("/designes/designes_create", formData, {
+//         headers: {
+//           "Content-Type": "multipart/form-data",
+//         },
+//       });
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.response.data);
+//     }
+//   }
+// );
