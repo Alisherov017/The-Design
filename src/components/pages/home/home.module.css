@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 15px;
+  margin-left: 70px;
+}
+
+.container > * {
+  margin-bottom: 10px; /* Отступ между рядами */
+}
+
+.container > *:nth-child(4n) {
+  margin-right: 0; /* Убираем отступ справа у каждого четвертого элемента */
+}

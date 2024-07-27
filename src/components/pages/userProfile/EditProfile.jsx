@@ -14,10 +14,11 @@ const EditProfile = () => {
   });
 
   useEffect(() => {
+    console.log(user, "EditProfile USER");
     if (user) {
       setFormData({
-        user_first_name: user.first_name || "",
-        user_email: user.email || "",
+        user_first_name: user.user_first_name || "",
+        user_email: user.user_email || "",
         user_descriptions: user.user_descriptions || "",
         user_profile_image: null,
       });
