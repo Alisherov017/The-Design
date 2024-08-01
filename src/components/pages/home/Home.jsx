@@ -6,6 +6,15 @@ const Home = () => {
   return (
     <div className={styles.container}>
       <ProductCars />
+      <ProductCars />
+      <ProductCars />
+      <ProductCars />
+      <ProductCars />
+      <ProductCars />
+      <ProductCars />
+      <ProductCars />
+      <ProductCars />
+      <ProductCars />
     </div>
   );
 };

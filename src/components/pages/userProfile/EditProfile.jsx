@@ -7,9 +7,10 @@ const EditProfile = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const [formData, setFormData] = useState({
-    user_first_name: "",
+    user_first_name: user.first_name || "",
     user_email: "",
     user_descriptions: "",
+    status_display: "",
     user_profile_image: null,
   });
 
@@ -20,6 +21,7 @@ const EditProfile = () => {
         user_first_name: user.user_first_name || "",
         user_email: user.user_email || "",
         user_descriptions: user.user_descriptions || "",
+        status_display: user.status_display || "",
         user_profile_image: null,
       });
     }
@@ -41,6 +43,7 @@ const EditProfile = () => {
     data.append("user_first_name", formData.user_first_name);
     data.append("user_email", formData.user_email);
     data.append("user_descriptions", formData.user_descriptions);
+    data.append("status_display", formData.status_display);
     if (formData.user_profile_image) {
       data.append("user_profile_image", formData.user_profile_image);
     }
@@ -87,6 +90,14 @@ const EditProfile = () => {
             type="email"
             name="user_email"
             value={formData.user_email}
+            onChange={handleChange}
+          />
+        </label>
+        <label>
+          <h3>status_display:</h3>
+          <input
+            name="status_display"
+            value={formData.status_display}
             onChange={handleChange}
           />
         </label>

@@ -90,15 +90,18 @@ const Navbar = () => {
                 <Link to="/profile">
                   <img
                     onClick={closeModal}
-                    src={userLogo}
+                    // src={userLogo}
+                    src={user ? user.user_profile_image : userLogo}
                     alt="Profile"
                     className={styles.profileImage}
                   />
                 </Link>
               </div>
-              <p>{user ? user.first_name : "User"}</p>
+              <p>{user ? user.user_first_name : user.first_name}</p>
               <ul className={styles.menu}>
-                <li>Upload design work</li>
+                <Link to="/addProduct">
+                  <li>Upload design work</li>
+                </Link>
                 <Link to="/editProfile">
                   <li onClick={closeModal}> Edit profile</li>
                 </Link>

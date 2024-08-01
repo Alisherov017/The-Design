@@ -22,6 +22,7 @@ export const loginUser = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const response = await axios.post(`${API}/login/`, userData);
+      // localStorage.setItem("authToken", JSON.stringify(response.data));
       return response.data;
     } catch (error) {
       console.log("Login error:", error);
@@ -38,7 +39,7 @@ export const updateUserProfile = createAsyncThunk(
     console.log(userId, "userId updateUserProfile");
     try {
       const response = await axios.put(
-        `${API}/user-profile/:${userId}/`,
+        `${API}/user-profile/${userId}/`,
         formData,
         {
           headers: {
@@ -49,6 +50,7 @@ export const updateUserProfile = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
+      console.error("updateUserProfile error:", error);
       return thunkAPI.rejectWithValue(
         error.response.data,
         "updateUserProfile error"
@@ -60,31 +62,18 @@ export const updateUserProfile = createAsyncThunk(
 export const addDesigneWork = createAsyncThunk(
   "designe/addDesigneWork",
   async (formData, thunkAPI) => {
+    const token = JSON.parse(localStorage.getItem("authToken"))?.token;
     try {
       const responce = await axios.post(`${API}/designes/`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
         },
       });
       return responce.data;
     } catch (error) {
+      console.log(error, "addDesigneWork error");
       return thunkAPI.rejectWithValue(error.responce.data);
     }
   }
 );
-
-// export const addDesigneWork = createAsyncThunk(
-//   "designe/addDesigneWork",
-//   async (formData, thunkAPI) => {
-//     try {
-//       const response = await axios.post("/designes/designes_create", formData, {
-//         headers: {
-//           "Content-Type": "multipart/form-data",
-//         },
-//       });
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data);
-//     }
-//   }
-// );
