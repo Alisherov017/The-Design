@@ -20,6 +20,7 @@ const ProfilePage = () => {
         <div className={styles.profileDetails}>
           <h2 className={styles.name}>{user.user_first_name}</h2>
           <p className={styles.email}>Email: {user.user_email}</p>
+          <p className={styles.email}>status_display: {user.user_status}</p>
           {user.user_descriptions && (
             <p className={styles.description}>
               About: {user.user_descriptions}

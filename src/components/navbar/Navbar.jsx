@@ -63,7 +63,8 @@ const Navbar = () => {
           {isLoggedIn ? (
             <img
               onClick={openModal}
-              src={userLogo}
+              src={user.user_profile_image || userLogo}
+              // src={userLogo}userLogo
               alt="Profile"
               className={styles.navbarProfile}
             />
@@ -90,14 +91,15 @@ const Navbar = () => {
                 <Link to="/profile">
                   <img
                     onClick={closeModal}
-                    // src={userLogo}
                     src={user ? user.user_profile_image : userLogo}
+                    // src={userLogo}
                     alt="Profile"
                     className={styles.profileImage}
                   />
                 </Link>
               </div>
-              <p>{user ? user.user_first_name : user.first_name}</p>
+              {/* <p>user</p> */}
+              <p>{user.user_first_name || user.first_name || "user"}</p>
               <ul className={styles.menu}>
                 <Link to="/addProduct">
                   <li>Upload design work</li>

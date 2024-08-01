@@ -7,7 +7,7 @@ const EditProfile = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const [formData, setFormData] = useState({
-    user_first_name: user.first_name || "",
+    user_first_name: "",
     user_email: "",
     user_descriptions: "",
     status_display: "",
@@ -80,7 +80,8 @@ const EditProfile = () => {
           <input
             type="text"
             name="user_first_name"
-            value={formData.user_first_name}
+            value={formData.user_first_name || user.first_name}
+            // value={formData.user_first_name}
             onChange={handleChange}
           />
         </label>
@@ -89,7 +90,8 @@ const EditProfile = () => {
           <input
             type="email"
             name="user_email"
-            value={formData.user_email}
+            value={formData.user_email || user.email}
+            // value={formData.user_email}
             onChange={handleChange}
           />
         </label>
@@ -97,7 +99,7 @@ const EditProfile = () => {
           <h3>status_display:</h3>
           <input
             name="status_display"
-            value={formData.status_display}
+            value={formData.status_display || user.status_display}
             onChange={handleChange}
           />
         </label>

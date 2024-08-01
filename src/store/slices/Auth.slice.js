@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loginUser, registerUser, updateUserProfile } from "../actions";
+import { json } from "react-router-dom";
 
 const authSlice = createSlice({
   name: "auth",
@@ -52,6 +53,14 @@ const authSlice = createSlice({
       })
       .addCase(updateUserProfile.fulfilled, (state, action) => {
         state.user = action.payload;
+        const token = state.token;
+        localStorage.setItem(
+          "authToken",
+          JSON.stringify({
+            token: token,
+            user: action.payload,
+          })
+        );
       })
       .addCase(updateUserProfile.rejected, (state, action) => {
         state.error = action.payload;

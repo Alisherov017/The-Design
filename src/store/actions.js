@@ -63,6 +63,11 @@ export const addDesigneWork = createAsyncThunk(
   "designe/addDesigneWork",
   async (formData, thunkAPI) => {
     const token = JSON.parse(localStorage.getItem("authToken"))?.token;
+    if (!token) {
+      console.log("Token is missing");
+    } else {
+      console.log("token is here");
+    }
     try {
       const responce = await axios.post(`${API}/designes/`, formData, {
         headers: {
