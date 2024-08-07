@@ -1,18 +1,18 @@
 .container {
-  /* display: flex; */
+  display: flex;
   /* justify-content: center; */
   /* align-items: center; */
-  width: 297px;
-  height: 254.75px;
-  /* background-color: #e0dede; */
+  flex-wrap: wrap;
+  /* width: 297px;
+  height: 254.75px; */
   padding: 10px;
   margin: 0 9px 9px 9px;
+  gap: 10px;
 }
 
 .picture {
-  width: 100%;
+  width: 297px;
   height: 225px;
-  background-color: rebeccapurple;
   border-radius: 3%;
 }
 
@@ -21,7 +21,6 @@
   justify-content: space-between;
   align-items: center;
   margin-top: -3px;
-  /* padding: 0 10px; */
 }
 
 .footer_left {

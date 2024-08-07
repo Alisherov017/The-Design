@@ -15,7 +15,6 @@ const EditProfile = () => {
   });
 
   useEffect(() => {
-    console.log(user, "EditProfile USER");
     if (user) {
       setFormData({
         user_first_name: user.user_first_name || "",
@@ -27,12 +26,10 @@ const EditProfile = () => {
     }
   }, [user]);
 
-  console.log(formData, "EditProfile formData");
-
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    setFormData((formData) => ({
-      ...formData,
+    setFormData((prevFormData) => ({
+      ...prevFormData,
       [name]: files ? files[0] : value,
     }));
   };
@@ -81,7 +78,6 @@ const EditProfile = () => {
             type="text"
             name="user_first_name"
             value={formData.user_first_name || user.first_name}
-            // value={formData.user_first_name}
             onChange={handleChange}
           />
         </label>
@@ -91,15 +87,15 @@ const EditProfile = () => {
             type="email"
             name="user_email"
             value={formData.user_email || user.email}
-            // value={formData.user_email}
             onChange={handleChange}
           />
         </label>
         <label>
           <h3>status_display:</h3>
           <input
+            type="text"
             name="status_display"
-            value={formData.status_display || user.status_display}
+            value={formData.status_display}
             onChange={handleChange}
           />
         </label>
@@ -111,7 +107,6 @@ const EditProfile = () => {
             onChange={handleChange}
           />
         </label>
-
         <button type="submit">Save Changes</button>
       </form>
     </div>

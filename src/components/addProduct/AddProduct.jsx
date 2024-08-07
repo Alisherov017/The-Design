@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addDesigneWork } from "../../store/actions";
 import styles from "./addProduct.module.css";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const user = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
 
   // console.log(user, "AddProduct user");
   const dispatch = useDispatch();
@@ -13,7 +15,6 @@ const AddProduct = () => {
     hashtag: "",
     category: "",
     descriptions: "",
-    user_status_display: "",
     media_data: null,
   });
 
@@ -21,7 +22,8 @@ const AddProduct = () => {
     const { name, value, files } = e.target;
     setFormData((formData) => ({
       ...formData,
-      [name]: files ? files[0] : value,
+      [name]:
+        name === "category" ? parseInt(value, 10) : files ? files[0] : value,
     }));
   };
 
@@ -33,9 +35,8 @@ const AddProduct = () => {
     const data = new FormData();
     data.append("designe_title", formData.designe_title);
     data.append("hashtag", formData.hashtag);
-    data.append("category", formData.category);
+    data.append("category", formData.category.toString());
     data.append("descriptions", formData.descriptions);
-    data.append("user_status_display", formData.user_status_display);
     if (formData.media_data) {
       data.append("media_data", formData.media_data);
     }
@@ -47,6 +48,7 @@ const AddProduct = () => {
     try {
       await dispatch(addDesigneWork(data)).unwrap();
       alert("Designe work added successfully");
+      navigate("/");
     } catch (error) {
       console.log(error, "error addDesigneWork");
     }
@@ -78,7 +80,7 @@ const AddProduct = () => {
         <label>
           Category:
           <input
-            type="text"
+            type="number"
             name="category"
             value={formData.category}
             onChange={handleChange}
@@ -92,16 +94,6 @@ const AddProduct = () => {
             value={formData.descriptions}
             onChange={handleChange}
           ></textarea>
-        </label>
-        <label>
-          User Status Display:
-          <input
-            type="text"
-            name="user_status_display"
-            value={formData.user_status_display}
-            onChange={handleChange}
-            required
-          />
         </label>
         <label>
           Media Data:

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import styles from "./Navbar.module.css";
 import profileImage from "../../assets/images/logo.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import userLogo from "../../assets/images/user logo.webp";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/slices/Auth.slice";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [isModalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
   const { isLoggedIn, user, token } = useSelector((state) => state.auth);
@@ -47,7 +48,7 @@ const Navbar = () => {
         </ul>
         <div className={styles.navbarLogo}>
           <Link to="/">
-            <img src={profileImage} alt="" />
+            <img src={profileImage} alt="Logo" />
           </Link>
         </div>
         <div className={styles.navbarSearch}>
@@ -63,15 +64,14 @@ const Navbar = () => {
           {isLoggedIn ? (
             <img
               onClick={openModal}
-              src={user.user_profile_image || userLogo}
-              // src={userLogo}userLogo
+              src={user?.user_profile_image || userLogo}
               alt="Profile"
               className={styles.navbarProfile}
             />
           ) : (
             <div className={styles.authButtons}>
               <Link to="/login">
-                <span className={styles.logIn}>Log In </span>
+                <span className={styles.logIn}>Log In</span>
               </Link>
               <Link to="/register">
                 <button className={styles.btn}>Sign Up</button>
@@ -91,15 +91,13 @@ const Navbar = () => {
                 <Link to="/profile">
                   <img
                     onClick={closeModal}
-                    src={user ? user.user_profile_image : userLogo}
-                    // src={userLogo}
+                    src={user?.user_profile_image || userLogo}
                     alt="Profile"
                     className={styles.profileImage}
                   />
                 </Link>
               </div>
-              {/* <p>user</p> */}
-              <p>{user.user_first_name || user.first_name || "user"}</p>
+              <p>{user?.user_first_name || user?.first_name || "user"}</p>
               <ul className={styles.menu}>
                 <Link to="/addProduct">
                   <li>Upload design work</li>

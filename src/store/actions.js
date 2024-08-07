@@ -8,7 +8,7 @@ export const registerUser = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const response = await axios.post(`${API}/register/`, userData);
-      console.log(response, "response");
+      console.log(response, "response registerUser  ");
       return response.data;
     } catch (error) {
       console.log("register error:", error);
@@ -23,6 +23,8 @@ export const loginUser = createAsyncThunk(
     try {
       const response = await axios.post(`${API}/login/`, userData);
       // localStorage.setItem("authToken", JSON.stringify(response.data));
+      console.log(response.data, "response.data login action");
+
       return response.data;
     } catch (error) {
       console.log("Login error:", error);
@@ -66,7 +68,7 @@ export const addDesigneWork = createAsyncThunk(
     if (!token) {
       console.log("Token is missing");
     } else {
-      console.log("token is here");
+      console.log(token, "token is here");
     }
     try {
       const responce = await axios.post(`${API}/designes/`, formData, {
@@ -78,7 +80,20 @@ export const addDesigneWork = createAsyncThunk(
       return responce.data;
     } catch (error) {
       console.log(error, "addDesigneWork error");
-      return thunkAPI.rejectWithValue(error.responce.data);
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const fetchDesigneWorks = createAsyncThunk(
+  "designe/fetchDesigneWorks",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get(`${API}/designes/`);
+      console.log(response.data, "response.data экшн");
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
