@@ -6,6 +6,7 @@ import nature from "../../assets/images/nature-landscape.jpg";
 import styles from "./card.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDesigneWorks, fetchUserProfiles } from "../../store/actions";
+import { Link } from "react-router-dom";
 
 const ProductCars = () => {
   const designeWorkss = useSelector((state) => state.designe.designeWorks);
@@ -41,14 +42,16 @@ const ProductCars = () => {
       {designeWorkss.map((designe) => (
         <div key={designe.id} className={styles.card}>
           <div>
-            <img
-              className={styles.picture}
-              src={designe.media_data || nature} // Используем изображение по умолчанию, если media_data отсутствует
-              alt="Product Image"
-              onError={(e) => {
-                e.target.src = nature;
-              }} // Если изображение не удалось загрузить, показываем изображение по умолчанию
-            />
+            <Link to={`/designe/${designe.id}`}>
+              <img
+                className={styles.picture}
+                src={designe.media_data || nature} // Используем изображение по умолчанию, если media_data отсутствует
+                alt="Product Image"
+                onError={(e) => {
+                  e.target.src = nature;
+                }} // Если изображение не удалось загрузить, показываем изображение по умолчанию
+              />
+            </Link>
           </div>
           <div className={styles.footer}>
             <div className={styles.footer_left}>

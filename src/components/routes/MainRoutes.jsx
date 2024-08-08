@@ -10,6 +10,8 @@ import EditProfile from "../pages/userProfile/EditProfile";
 import Profile from "../pages/userProfile/profile/Profile";
 import Home from "../pages/home/Home";
 import AddProduct from "../addProduct/AddProduct";
+import Inspiration from "../pages/inspiration/Inspiration";
+import DetailCard from "../ProductCard/detailCard/DetailCard";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +28,8 @@ export const router = createBrowserRouter([
       { path: "/profile", element: <Profile /> },
       { path: "/", element: <Home /> },
       { path: "/addProduct", element: <AddProduct /> },
+      { path: "/inspiration", element: <Inspiration /> },
+      { path: "/designe/:id", element: <DetailCard /> },
     ],
   },
 ]);
