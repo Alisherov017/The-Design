@@ -107,7 +107,7 @@ const Navbar = () => {
                 </Link>
                 <li id={styles.setting}>Settings</li>
                 <hr />
-                <li onClick={handleLogout}>Sign out</li>
+                <li onClick={handleLogout}>Sign out </li>
               </ul>
             </div>
           </div>

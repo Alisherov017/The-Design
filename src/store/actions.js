@@ -97,3 +97,11 @@ export const fetchDesigneWorks = createAsyncThunk(
     }
   }
 );
+
+export const fetchUserProfiles = createAsyncThunk(
+  "users/fetchUserProfiles",
+  async () => {
+    const res = await axios.get(`${API}/user-profile/`);
+    return res.data;
+  }
+);

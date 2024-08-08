@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loginUser, registerUser, updateUserProfile } from "../actions";
-import { json, useNavigate } from "react-router-dom";
 
 const authSlice = createSlice({
   name: "auth",

@@ -6,21 +6,22 @@
   /* width: 297px;
   height: 254.75px; */
   padding: 10px;
-  margin: 0 9px 9px 9px;
-  gap: 10px;
+  margin: 0 9px 0px 9px;
+  gap: 40px;
 }
 
 .picture {
-  width: 297px;
-  height: 225px;
-  border-radius: 3%;
+  width: 322px;
+  height: 245px;
+  border-radius: 4%;
 }
 
 .footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: -3px;
+  margin-top: -12px;
+  /* height: 30px; */
 }
 
 .footer_left {
@@ -29,7 +30,7 @@
 }
 
 .footer_left img {
-  background-color: aqua;
+  background-color: rgb(214, 244, 244);
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -60,3 +61,7 @@
 .FavoriteIcon {
   margin-right: 5px;
 }
+
+/* .card {
+  margin-bottom: 5px;
+} */
