@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import profil from "../../assets/images/user logo.webp";
 import nature from "../../assets/images/nature-landscape.jpg";
@@ -49,7 +49,7 @@ const ProductCars = () => {
                 alt="Product Image"
                 onError={(e) => {
                   e.target.src = nature;
-                }} // Если изображение не удалось загрузить, показываем изображение по умолчанию
+                }}
               />
             </Link>
           </div>
@@ -69,7 +69,7 @@ const ProductCars = () => {
             </div>
             <div className={styles.right}>
               <div className={styles.like}>
-                <FavoriteIcon />
+                <FavoriteBorderIcon />
                 <p className={styles.FavoriteIcon}>{designe.likes}</p>
               </div>
               <div className={styles.view}>

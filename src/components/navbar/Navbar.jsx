@@ -105,7 +105,9 @@ const Navbar = () => {
                 <Link to="/editProfile">
                   <li onClick={closeModal}> Edit profile</li>
                 </Link>
-                <li id={styles.setting}>Settings</li>
+                <Link to="/allUsers">
+                  <li id={styles.setting}>All users</li>
+                </Link>
                 <hr />
                 <li onClick={handleLogout}>Sign out </li>
               </ul>

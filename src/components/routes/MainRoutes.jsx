@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import Designers from "../pages/designers/Designers";
-import Error from "../error/Error";
 import MainLayout from "./MainLayout";
 import Jobs from "../pages/Jobss/Job";
 import GoPro from "../pages/GoPro/GoPro";
@@ -12,6 +11,8 @@ import Home from "../pages/home/Home";
 import AddProduct from "../addProduct/AddProduct";
 import Inspiration from "../pages/inspiration/Inspiration";
 import DetailCard from "../ProductCard/detailCard/DetailCard";
+import AlllUsers from "../pages/Allappli/Allluser";
+import Error from "../error/Error";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,7 @@ export const router = createBrowserRouter([
       { path: "/addProduct", element: <AddProduct /> },
       { path: "/inspiration", element: <Inspiration /> },
       { path: "/designe/:id", element: <DetailCard /> },
+      { path: "/allUsers", element: <AlllUsers /> },
     ],
   },
 ]);
