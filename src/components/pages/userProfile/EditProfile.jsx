@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import styles from "./userProfile.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserProfile } from "../../../store/actions";
+import { useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user);
   const [formData, setFormData] = useState({
     user_first_name: "",
@@ -48,6 +50,7 @@ const EditProfile = () => {
     try {
       await dispatch(updateUserProfile(data)).unwrap();
       alert("Profile updated successfully");
+      navigate("/");
     } catch (error) {
       console.log("updateUserProfile error", error);
     }

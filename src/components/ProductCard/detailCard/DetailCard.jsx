@@ -1,20 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Detail.module.css";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import nature from "../../../assets/images/nature-landscape.jpg";
-import profile from "../../../assets/images/user logo.webp";
+import profile from "../../../assets/images/devid goggins.webp";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import CommentIcon from "@mui/icons-material/Comment";
 import LoadingOne from "../../pages/loading/LoadingOne";
+import { sendMessage } from "../../../store/actions";
+import axios from "axios";
 
 const DetailCard = () => {
+  const API = "https://designhub-akrq.onrender.com";
+  const { id: designId } = useParams();
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const [showCommentField, setShowCommentField] = useState(false);
+  const [commentText, setCommentText] = useState("");
+
   const designeWorks = useSelector((state) => state.designe.designeWorks);
   const designe = designeWorks.find((item) => item.id === parseInt(id));
 
   const userProfiles = useSelector((state) => state.users.profiles);
+  const senderId = useSelector((state) => state.auth.user);
 
   const getUserName = (userId) => {
     const userProfile = userProfiles.find((profile) => profile.user === userId);
@@ -27,6 +36,65 @@ const DetailCard = () => {
       ? userProfile.user_profile_image
       : profile;
   };
+
+  // ! коммент
+  const handleCommentChange = (event) => {
+    setCommentText(event.target.value);
+  };
+
+  const handleCommentSubmit = () => {
+    if (commentText.trim()) {
+      dispatch(sendMessage({ chatId: designe.id, text: commentText, senderId }))
+        .unwrap()
+        .catch((error) => {
+          console.error("Ошибка при отправке сообщения:", error);
+        });
+      setCommentText("");
+      setShowCommentField(false);
+    }
+  };
+
+  const handleCommentClick = () => {
+    setShowCommentField(!showCommentField);
+  };
+
+  // ! favorite
+  // const [isFavorite, setIsFavorite] = useState(false);
+
+  // useEffect(() => {
+  //   axios.get(`${API}/favorites/check/${designId}/`).then((response) => {
+  //     setIsFavorite(response.data.isFavorite)
+  //   })
+
+  // });
+
+  // useEffect(() => {
+  //   axios
+  //     .get(`/favorites/check/${designId}/`)
+  //     .then((response) => {
+  //       setIsFavorite(response.data.isFavorite);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Ошибка при проверке избранного:", error);
+  //     });
+  // }, [designId]);
+
+  // const handleFavoriteClick = () => {
+  //   const action = isFavorite ? 'remove' : 'add'
+  //   axios.post(`${API}/favorites/`)
+  // }
+
+  // const handleFavoriteClick = () => {
+  //   const action = isFavorite ? "remove" : "add";
+  //   axios
+  //     .post(`/favorites/${action}_design/`, { design_id: designId })
+  //     .then((response) => {
+  //       setIsFavorite(!isFavorite);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Ошибка при обновлении избранного:", error);
+  //     });
+  // };
 
   if (!designe) {
     return (
@@ -67,7 +135,10 @@ const DetailCard = () => {
             <div className={styles.header__right_icons}>
               <BookmarkIcon className={styles.icons} />
             </div>
-            <div className={styles.header__right_icons}>
+            <div
+              className={styles.header__right_icons}
+              onClick={handleCommentClick} // Добавляем обработчик клика
+            >
               <CommentIcon className={styles.icons} />
             </div>
           </div>
@@ -75,7 +146,7 @@ const DetailCard = () => {
 
         <div className={styles.content}>
           <div>
-            <img className={styles.header} src={designe.media_data} alt="" />{" "}
+            {/* <img className={styles.header} src={designe.media_data} alt="" />{" "} */}
             <img
               className={styles.picture}
               src={designe.media_data || nature}
@@ -84,9 +155,27 @@ const DetailCard = () => {
                 e.target.src = nature;
               }}
             />
-            <p>{designe.descriptions}</p>
+            <p className={styles.deatailDescr}>{designe.descriptions}</p>
           </div>
         </div>
+
+        {/* Поле для ввода комментария */}
+        {showCommentField && (
+          <div className={styles.commentField}>
+            <textarea
+              placeholder="Write comments ..."
+              className={styles.commentInput}
+              value={commentText}
+              onChange={handleCommentChange}
+            ></textarea>
+            <button
+              className={styles.commentButton}
+              onClick={handleCommentSubmit}
+            >
+              Отправить
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

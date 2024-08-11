@@ -105,3 +105,37 @@ export const fetchUserProfiles = createAsyncThunk(
     return res.data;
   }
 );
+
+export const fetchChats = createAsyncThunk(
+  "chats/fetchChats",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get(`${API}/messages/`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const sendMessage = createAsyncThunk(
+  "chats/sendMessage",
+  async ({ chatId, text, senderId }, thunkAPI) => {
+    const token = JSON.parse(localStorage.getItem("authToken"))?.token;
+
+    try {
+      const response = await axios.post(
+        `${API}/messages/`,
+        { chat: chatId, sender: senderId, text: text },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Добавляем токен в заголовки
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);

@@ -1,7 +1,7 @@
 .container {
-  /* width: 1024px; */
-  /* display: flex; */
-  /* position: center; */
+  /* width: 1024px;
+  display: flex;
+  position: center; */
 }
 
 .wrapper {
@@ -14,6 +14,7 @@
   font-weight: 600;
   font-size: 23.44px;
   height: 33px;
+  margin-bottom: 20px;
 }
 
 .header {
@@ -28,6 +29,9 @@
   display: flex;
   align-items: center;
   margin-top: 5px;
+  margin-bottom: 3px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
 .header__left_name {
@@ -58,6 +62,40 @@
 
 .picture {
   width: 1024px;
-  height: 768pxpx;
+  height: 768px;
   border-radius: 1.5%;
+}
+
+.deatailDescr {
+  width: 1024px;
+}
+
+/* !comments */
+.commentField {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.commentInput {
+  height: 70px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: none;
+}
+
+.commentButton {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #ff0099;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.commentButton:hover {
+  background-color: #d00c8f;
+  color: white;
 }
