@@ -139,3 +139,34 @@ export const sendMessage = createAsyncThunk(
     }
   }
 );
+
+// ! избранные
+export const fetchFavorites = createAsyncThunk(
+  "favorites/fetchFavorites",
+  async () => {
+    const response = await axios.get(`${API}/favorites/`);
+    return response.data.designs; // Предположим, что сервер возвращает { designs: [...] }
+  }
+);
+
+export const addFavorite = createAsyncThunk(
+  "favorites/addFavorite",
+  async (designId) => {
+    // Добавлен параметр designId
+    await axios.post(`${API}/favorites/add_design/`, {
+      // Исправлен URL на правильный
+      design_id: designId,
+    });
+    return designId;
+  }
+);
+
+export const removeFavorite = createAsyncThunk(
+  "favorites/removeFavorite",
+  async (designId) => {
+    await axios.post(`${API}/favorites/remove_design/`, {
+      design_id: designId,
+    });
+    return designId;
+  }
+);

@@ -5,25 +5,32 @@ import { useDispatch, useSelector } from "react-redux";
 import nature from "../../../assets/images/nature-landscape.jpg";
 import profile from "../../../assets/images/devid goggins.webp";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import CommentIcon from "@mui/icons-material/Comment";
 import LoadingOne from "../../pages/loading/LoadingOne";
-import { sendMessage } from "../../../store/actions";
+import {
+  addFavorite,
+  removeFavorite,
+  sendMessage,
+} from "../../../store/actions";
 import axios from "axios";
 
 const DetailCard = () => {
-  const API = "https://designhub-akrq.onrender.com";
   const { id: designId } = useParams();
   const { id } = useParams();
   const dispatch = useDispatch();
+
   const [showCommentField, setShowCommentField] = useState(false);
   const [commentText, setCommentText] = useState("");
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const designeWorks = useSelector((state) => state.designe.designeWorks);
   const designe = designeWorks.find((item) => item.id === parseInt(id));
 
   const userProfiles = useSelector((state) => state.users.profiles);
   const senderId = useSelector((state) => state.auth.user);
+  const favorites = useSelector((state) => state.favorites.favorites);
 
   const getUserName = (userId) => {
     const userProfile = userProfiles.find((profile) => profile.user === userId);
@@ -56,6 +63,26 @@ const DetailCard = () => {
 
   const handleCommentClick = () => {
     setShowCommentField(!showCommentField);
+  };
+
+  // ! фаворит
+  useEffect(() => {
+    setIsFavorite(favorites.includes(designId));
+  }, [favorites, designId]);
+
+  const handleFavoriteClick = async () => {
+    try {
+      if (isFavorite) {
+        await dispatch(removeFavorite(designId)).unwrap();
+        setIsFavorite(false);
+      } else {
+        await dispatch(addFavorite(designId)).unwrap();
+        setIsFavorite(true);
+      }
+    } catch (error) {
+      console.error("Ошибка при обновлении избранного:", error);
+      // Обработка ошибки, например, отображение сообщения пользователю
+    }
   };
 
   if (!designe) {
@@ -91,8 +118,15 @@ const DetailCard = () => {
             </div>
           </div>
           <div className={styles.header__right}>
-            <div className={styles.header__right_icons}>
-              <FavoriteBorderIcon className={styles.icons} />
+            <div
+              className={styles.header__right_icons}
+              onClick={handleFavoriteClick}
+            >
+              {isFavorite ? (
+                <FavoriteIcon className={styles.icons} />
+              ) : (
+                <FavoriteBorderIcon className={styles.icons} />
+              )}
             </div>
             <div className={styles.header__right_icons}>
               <BookmarkIcon className={styles.icons} />
