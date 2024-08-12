@@ -58,44 +58,6 @@ const DetailCard = () => {
     setShowCommentField(!showCommentField);
   };
 
-  // ! favorite
-  // const [isFavorite, setIsFavorite] = useState(false);
-
-  // useEffect(() => {
-  //   axios.get(`${API}/favorites/check/${designId}/`).then((response) => {
-  //     setIsFavorite(response.data.isFavorite)
-  //   })
-
-  // });
-
-  // useEffect(() => {
-  //   axios
-  //     .get(`/favorites/check/${designId}/`)
-  //     .then((response) => {
-  //       setIsFavorite(response.data.isFavorite);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Ошибка при проверке избранного:", error);
-  //     });
-  // }, [designId]);
-
-  // const handleFavoriteClick = () => {
-  //   const action = isFavorite ? 'remove' : 'add'
-  //   axios.post(`${API}/favorites/`)
-  // }
-
-  // const handleFavoriteClick = () => {
-  //   const action = isFavorite ? "remove" : "add";
-  //   axios
-  //     .post(`/favorites/${action}_design/`, { design_id: designId })
-  //     .then((response) => {
-  //       setIsFavorite(!isFavorite);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Ошибка при обновлении избранного:", error);
-  //     });
-  // };
-
   if (!designe) {
     return (
       <div>

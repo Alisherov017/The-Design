@@ -1,0 +1,145 @@
+.container {
+  /* position: relative; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 50px;
+  margin-left: 40px;
+  padding-top: 80px;
+}
+
+.container > * {
+  margin-bottom: 10px;
+}
+
+.container > *:nth-child(4n) {
+  margin-right: 0;
+}
+
+.creativesButton {
+  position: absolute;
+  /* top: 70px; */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background-color: #ff69b4;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: "Lobster", cursive;
+  cursor: pointer;
+  z-index: 10; /* Чтобы кнопка была поверх карточек */
+  border-radius: 50px;
+}
+
+.creativesButton:hover {
+  background-color: #d81272; /* Светлее при наведении */
+}
+
+.destinationText {
+  font-size: 2.9rem;
+  font-family: "Bebas Neue", sans-serif;
+  font-family: "Great Vibes", cursive;
+  font-weight: normal;
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 350px;
+  line-height: 1.1;
+  word-spacing: 0.2em;
+}
+
+.getStartedButton {
+  padding: 15px 20px;
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: "Lobster", cursive;
+  transform: translateX(-50%);
+  cursor: pointer;
+  margin-left: 100px;
+  border-radius: 50px;
+}
+
+.getStartedButton:hover {
+  background-color: #d81272;
+}
+
+.cardsWrapper {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  padding: 20px 0;
+}
+
+.cardsWrapper > div {
+  display: flex;
+  animation: scrollLeft 10s linear infinite;
+}
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.exploreText {
+  font-size: 3.5rem;
+  font-family: "Lobster", cursive;
+
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  color: #1f1b1b;
+  margin-left: 450px;
+}
+
+.yellowRectangle {
+  height: 550px;
+  width: 94.5%;
+  background-color: #e16da7;
+  padding: 20px;
+  text-align: center;
+  font-size: 2rem;
+  font-family: "Bebas Neue", sans-serif;
+  font-family: "Great Vibes", cursive;
+
+  color: #f9f1f1;
+  margin-top: 10px;
+  word-spacing: 0.4em;
+  letter-spacing: 0.07em;
+}
+
+.yellowRectangle p {
+  font-size: 1.8rem;
+  font-weight: bold;
+
+  color: #131715;
+  margin-top: 0px;
+  margin-bottom: 0;
+}
+
+.getStartedButton,
+.learnAboutButton {
+  padding: 15px 20px;
+  border: none;
+  border-radius: 50pxpx;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #333;
+  cursor: pointer;
+  margin: 0 px;
+  margin-top: 50px;
+}
+
+.getStartedButton:hover,
+.learnAboutButton:hover {
+  background-color: #fbebeb;
+}
