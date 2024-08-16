@@ -6,24 +6,20 @@ import nature from "../../../assets/images/nature-landscape.jpg";
 import profile from "../../../assets/images/devid goggins.webp";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
+import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
+import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 import CommentIcon from "@mui/icons-material/Comment";
 import LoadingOne from "../../pages/loading/LoadingOne";
-import {
-  addFavorite,
-  removeFavorite,
-  sendMessage,
-} from "../../../store/actions";
-import axios from "axios";
+import { addFavorite, removeFavorite } from "../../../store/actions";
+import { addComment } from "../../../store/chats.action";
 
 const DetailCard = () => {
-  const { id: designId } = useParams();
   const { id } = useParams();
   const dispatch = useDispatch();
 
   const [showCommentField, setShowCommentField] = useState(false);
-  const [commentText, setCommentText] = useState("");
   const [isFavorite, setIsFavorite] = useState(false);
+  const [comment, setComment] = useState("");
 
   const designeWorks = useSelector((state) => state.designe.designeWorks);
   const designe = designeWorks.find((item) => item.id === parseInt(id));
@@ -44,45 +40,34 @@ const DetailCard = () => {
       : profile;
   };
 
-  // ! коммент
-  const handleCommentChange = (event) => {
-    setCommentText(event.target.value);
-  };
-
-  const handleCommentSubmit = () => {
-    if (commentText.trim()) {
-      dispatch(sendMessage({ chatId: designe.id, text: commentText, senderId }))
-        .unwrap()
-        .catch((error) => {
-          console.error("Ошибка при отправке сообщения:", error);
-        });
-      setCommentText("");
-      setShowCommentField(false);
-    }
-  };
-
   const handleCommentClick = () => {
     setShowCommentField(!showCommentField);
   };
 
   // ! фаворит
   useEffect(() => {
-    setIsFavorite(favorites.includes(designId));
-  }, [favorites, designId]);
+    setIsFavorite(favorites.includes(id));
+  }, [favorites, id]);
 
   const handleFavoriteClick = async () => {
     try {
       if (isFavorite) {
-        await dispatch(removeFavorite(designId)).unwrap();
+        await dispatch(removeFavorite(id)).unwrap();
         setIsFavorite(false);
       } else {
-        await dispatch(addFavorite(designId)).unwrap();
+        await dispatch(addFavorite(id)).unwrap();
         setIsFavorite(true);
       }
     } catch (error) {
       console.error("Ошибка при обновлении избранного:", error);
-      // Обработка ошибки, например, отображение сообщения пользователю
     }
+  };
+
+  // ! commments
+  const handleCommentSubmit = () => {
+    dispatch(addComment({ designId: id, content: comment }));
+    setComment("");
+    setShowCommentField(false);
   };
 
   if (!designe) {
@@ -118,22 +103,24 @@ const DetailCard = () => {
             </div>
           </div>
           <div className={styles.header__right}>
+            <div className={styles.header__right_icons}>
+              <FavoriteBorderIcon className={styles.icons} />
+              {/* <BookmarkIcon className={styles.icons} /> */}
+            </div>
             <div
               className={styles.header__right_icons}
               onClick={handleFavoriteClick}
             >
               {isFavorite ? (
-                <FavoriteIcon className={styles.icons} />
+                <BookmarkRemoveIcon className={styles.icons} />
               ) : (
-                <FavoriteBorderIcon className={styles.icons} />
+                <BookmarkAddedIcon className={styles.icons} />
               )}
             </div>
-            <div className={styles.header__right_icons}>
-              <BookmarkIcon className={styles.icons} />
-            </div>
+
             <div
               className={styles.header__right_icons}
-              onClick={handleCommentClick} // Добавляем обработчик клика
+              onClick={handleCommentClick}
             >
               <CommentIcon className={styles.icons} />
             </div>
@@ -161,8 +148,8 @@ const DetailCard = () => {
             <textarea
               placeholder="Write comments ..."
               className={styles.commentInput}
-              value={commentText}
-              onChange={handleCommentChange}
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
             ></textarea>
             <button
               className={styles.commentButton}

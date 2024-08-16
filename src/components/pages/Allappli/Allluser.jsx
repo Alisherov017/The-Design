@@ -1,10 +1,16 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./Alls.module.css";
 import profile from "../../../assets/images/devid goggins.webp";
 import LoadingOne from "../loading/LoadingOne";
+import { fetchUserProfiles } from "../../../store/actions";
 
 const AlllUsers = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchUserProfiles());
+  }, [dispatch]);
+
   const userProfiles = useSelector((state) => state.users.profiles);
   console.log(userProfiles, "userProfiles AlllUsers");
 

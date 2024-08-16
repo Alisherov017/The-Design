@@ -84,6 +84,7 @@ const AddProduct = () => {
             name="category"
             value={formData.category}
             onChange={handleChange}
+            className={styles.category}
           />
         </label>
         <label>

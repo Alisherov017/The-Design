@@ -102,45 +102,13 @@ export const fetchUserProfiles = createAsyncThunk(
   "users/fetchUserProfiles",
   async () => {
     const res = await axios.get(`${API}/user-profile/`);
+    console.log(res.data, "users fetchUserProfiles");
     return res.data;
   }
 );
 
-export const fetchChats = createAsyncThunk(
-  "chats/fetchChats",
-  async (_, thunkAPI) => {
-    try {
-      const response = await axios.get(`${API}/messages/`);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
-  }
-);
-
-export const sendMessage = createAsyncThunk(
-  "chats/sendMessage",
-  async ({ chatId, text, senderId }, thunkAPI) => {
-    const token = JSON.parse(localStorage.getItem("authToken"))?.token;
-
-    try {
-      const response = await axios.post(
-        `${API}/messages/`,
-        { chat: chatId, sender: senderId, text: text },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // Добавляем токен в заголовки
-          },
-        }
-      );
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
-  }
-);
-
 // ! избранные
+
 export const fetchFavorites = createAsyncThunk(
   "favorites/fetchFavorites",
   async () => {
@@ -151,22 +119,38 @@ export const fetchFavorites = createAsyncThunk(
 
 export const addFavorite = createAsyncThunk(
   "favorites/addFavorite",
-  async (designId) => {
-    // Добавлен параметр designId
-    await axios.post(`${API}/favorites/add_design/`, {
-      // Исправлен URL на правильный
-      design_id: designId,
-    });
-    return designId;
+  async (designId, thunkAPI) => {
+    try {
+      await axios.post(
+        `${API}/favorites/add_design/`,
+        { design_id: designId },
+        getAuthHeaders()
+      );
+      return designId;
+    } catch (error) {
+      console.log(error, "addFavorite action erroor");
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
   }
 );
 
 export const removeFavorite = createAsyncThunk(
   "favorites/removeFavorite",
   async (designId) => {
-    await axios.post(`${API}/favorites/remove_design/`, {
-      design_id: designId,
-    });
+    await axios.post(
+      `${API}/favorites/remove_design/`,
+      { design_id: designId },
+      getAuthHeaders()
+    );
     return designId;
   }
 );
+
+const getAuthHeaders = () => {
+  const token = localStorage.getItem("token"); // Или как вы храните токен
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`, // Формат может зависеть от вашего API
+    },
+  };
+};

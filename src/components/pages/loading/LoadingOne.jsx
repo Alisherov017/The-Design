@@ -3,7 +3,7 @@ import styles from "./Waiting.module.scss";
 
 const LoadingOne = () => {
   return (
-    <div>
+    <div className={styles.container}>
       <div className={styles.loader}>Loading...</div>;
     </div>
   );

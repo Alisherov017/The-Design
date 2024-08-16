@@ -12,7 +12,7 @@ const usersSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchUserProfiles.pending, (state) => {
-        state.status = "loading";
+        state.status = "loading";                  
       })
       .addCase(fetchUserProfiles.fulfilled, (state, action) => {
         state.status = "succeeded";

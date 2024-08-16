@@ -58,7 +58,7 @@ const EditProfile = () => {
 
   return (
     <div className={styles.container}>
-      <h2>Edit Profile</h2>
+      <h2 className={styles.h2}>Edit Profile</h2>
       <form onSubmit={handleSubmit}>
         <label>
           <h3>Profile Picture:</h3>
@@ -75,7 +75,7 @@ const EditProfile = () => {
             onChange={handleChange}
           />
         </label>
-        <label>
+        <label className={styles.label}>
           <h3>First Name:</h3>
           <input
             type="text"
