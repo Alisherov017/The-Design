@@ -140,3 +140,15 @@
 .commentsSection {
   margin-top: 24px;
 }
+
+.deleteCon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.delete {
+  cursor: pointer;
+  color: red;
+  size: 16px;
+}

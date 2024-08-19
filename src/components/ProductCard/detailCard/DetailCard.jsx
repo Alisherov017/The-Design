@@ -11,7 +11,12 @@ import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 import CommentIcon from "@mui/icons-material/Comment";
 import LoadingOne from "../../pages/loading/LoadingOne";
 import { addFavorite, removeFavorite } from "../../../store/actions";
-import { addComment, fetchComments } from "../../../store/chats.action";
+import {
+  addComment,
+  deleteComment,
+  fetchComments,
+} from "../../../store/chats.action";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const DetailCard = () => {
   const { id } = useParams();
@@ -28,6 +33,7 @@ const DetailCard = () => {
   const senderId = useSelector((state) => state.auth.user);
   const favorites = useSelector((state) => state.favorites.favorites);
   const comments = useSelector((state) => state.chats.comments);
+  console.log(comments, "comments");
 
   const getUserName = (userId) => {
     const userProfile = userProfiles.find((profile) => profile.user === userId);
@@ -82,6 +88,14 @@ const DetailCard = () => {
       await dispatch(fetchComments(id));
     } catch (error) {
       console.error("Ошибка при добавлении комментария:", error);
+    }
+  };
+
+  const handleDeleteComment = async (commentId) => {
+    try {
+      await dispatch(deleteComment(id, commentId)).unwrap();
+    } catch (error) {
+      console.error("Ошибка при удалении комментария:", error);
     }
   };
 
@@ -187,10 +201,21 @@ const DetailCard = () => {
                     alt="Profile"
                   />
                   <p className={styles.commentUserName}>
-                    {getUserName(comment.user)}
+                    {comment.user_first_name}
                   </p>
                 </div>
-                <p className={styles.commentContent}>{comment.content}</p>
+                <div
+                  key={comment.id}
+                  className={styles.deleteCon}
+                  style={{ display: "flex", alignItems: "center" }}
+                >
+                  <p style={{ marginRight: "10px" }}>{comment.content}</p>
+                  <DeleteIcon
+                    className={styles.delete}
+                    onClick={() => handleDeleteComment(comment.id)}
+                  />
+                </div>
+
                 <p className={styles.commentDate}>
                   {new Date(comment.created_at).toLocaleString()}
                 </p>
