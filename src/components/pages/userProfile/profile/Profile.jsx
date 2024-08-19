@@ -15,7 +15,7 @@ const ProfilePage = () => {
             <a href="/contact">Контакт</a>
           </li>
           <li>
-            <a href="/messages">Сообщение</a>
+            <a href="/messages">Сообщение</a>     
           </li>
           <li>
             <a href="/projects">Проекты</a>

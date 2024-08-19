@@ -11,7 +11,7 @@ import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 import CommentIcon from "@mui/icons-material/Comment";
 import LoadingOne from "../../pages/loading/LoadingOne";
 import { addFavorite, removeFavorite } from "../../../store/actions";
-import { addComment } from "../../../store/chats.action";
+import { addComment, fetchComments } from "../../../store/chats.action";
 
 const DetailCard = () => {
   const { id } = useParams();
@@ -27,6 +27,7 @@ const DetailCard = () => {
   const userProfiles = useSelector((state) => state.users.profiles);
   const senderId = useSelector((state) => state.auth.user);
   const favorites = useSelector((state) => state.favorites.favorites);
+  const comments = useSelector((state) => state.chats.comments);
 
   const getUserName = (userId) => {
     const userProfile = userProfiles.find((profile) => profile.user === userId);
@@ -44,10 +45,13 @@ const DetailCard = () => {
     setShowCommentField(!showCommentField);
   };
 
-  // ! фаворит
   useEffect(() => {
+    // Загружаем комментарии при монтировании компонента
+    dispatch(fetchComments(id));
+
+    // Обновляем состояние избранного
     setIsFavorite(favorites.includes(id));
-  }, [favorites, id]);
+  }, [dispatch, id, favorites]);
 
   const handleFavoriteClick = async () => {
     try {
@@ -63,11 +67,22 @@ const DetailCard = () => {
     }
   };
 
-  // ! commments
-  const handleCommentSubmit = () => {
-    dispatch(addComment({ designId: id, content: comment }));
-    setComment("");
-    setShowCommentField(false);
+  const handleCommentSubmit = async () => {
+    if (comment.trim().length === 0) {
+      alert("Комментарий не может быть пустым.");
+      return;
+    }
+
+    try {
+      await dispatch(addComment({ designId: id, content: comment })).unwrap();
+      setComment("");
+      setShowCommentField(false);
+
+      // Обновляем комментарии после добавления нового
+      await dispatch(fetchComments(id));
+    } catch (error) {
+      console.error("Ошибка при добавлении комментария:", error);
+    }
   };
 
   if (!designe) {
@@ -82,7 +97,7 @@ const DetailCard = () => {
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <div className={styles.title_head}>
-          <p> {designe.designe_title} </p>
+          <p>{designe.designe_title}</p>
         </div>
         <div className={styles.header}>
           <div className={styles.header__left}>
@@ -129,7 +144,6 @@ const DetailCard = () => {
 
         <div className={styles.content}>
           <div>
-            {/* <img className={styles.header} src={designe.media_data} alt="" />{" "} */}
             <img
               className={styles.picture}
               src={designe.media_data || nature}
@@ -159,6 +173,30 @@ const DetailCard = () => {
             </button>
           </div>
         )}
+
+        {/* Список комментариев */}
+        <div className={styles.commentsSection}>
+          {comments
+            .filter((c) => c.design === designe.id) // Фильтруем комментарии по дизайну
+            .map((comment) => (
+              <div key={comment.id} className={styles.commentItem}>
+                <div className={styles.commentUser}>
+                  <img
+                    className={styles.commentUserImage}
+                    src={getUserProfileImage(comment.user)}
+                    alt="Profile"
+                  />
+                  <p className={styles.commentUserName}>
+                    {getUserName(comment.user)}
+                  </p>
+                </div>
+                <p className={styles.commentContent}>{comment.content}</p>
+                <p className={styles.commentDate}>
+                  {new Date(comment.created_at).toLocaleString()}
+                </p>
+              </div>
+            ))}
+        </div>
       </div>
     </div>
   );

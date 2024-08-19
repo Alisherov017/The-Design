@@ -100,3 +100,43 @@
   background-color: #d00c8f;
   color: white;
 }
+
+/*  */
+/* Detail.module.css */
+.commentItem {
+  margin-bottom: 16px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.commentUser {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.commentUserImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.commentUserName {
+  font-weight: bold;
+}
+
+.commentContent {
+  margin-bottom: 8px;
+}
+
+.commentDate {
+  color: #888;
+  font-size: 12px;
+}
+
+.commentsSection {
+  margin-top: 24px;
+}

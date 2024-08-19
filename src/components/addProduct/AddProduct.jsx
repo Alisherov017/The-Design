@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addDesigneWork } from "../../store/actions";
 import styles from "./addProduct.module.css";
@@ -7,8 +7,6 @@ import { useNavigate } from "react-router-dom";
 const AddProduct = () => {
   const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
-
-  // console.log(user, "AddProduct user");
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     designe_title: "",
@@ -26,8 +24,6 @@ const AddProduct = () => {
         name === "category" ? parseInt(value, 10) : files ? files[0] : value,
     }));
   };
-
-  console.log(formData, "formData in AddProduct");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,9 +52,9 @@ const AddProduct = () => {
 
   return (
     <div className={styles.container}>
-      <h2>Add new designe work</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
+      <h2 className={styles.title}>Add new designe work</h2>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <label className={styles.label}>
           Title:
           <input
             type="text"
@@ -66,39 +62,46 @@ const AddProduct = () => {
             value={formData.designe_title}
             onChange={handleChange}
             required
+            className={styles.input}
           />
         </label>
-        <label>
+        <label className={styles.label}>
           HashTag:
           <input
             type="text"
             name="hashtag"
             value={formData.hashtag}
             onChange={handleChange}
+            className={styles.input}
           />
         </label>
-        <label>
+        <label className={styles.label}>
           Category:
           <input
             type="number"
             name="category"
             value={formData.category}
             onChange={handleChange}
-            className={styles.category}
+            className={styles.input}
           />
         </label>
-        <label>
+        <label className={styles.label}>
           Description:
           <textarea
-            className={styles.descriptions}
             name="descriptions"
             value={formData.descriptions}
             onChange={handleChange}
+            className={styles.textarea}
           ></textarea>
         </label>
-        <label>
+        <label className={styles.label}>
           Media Data:
-          <input type="file" name="media_data" onChange={handleChange} />
+          <input
+            type="file"
+            name="media_data"
+            onChange={handleChange}
+            className={styles.fileInput}
+          />
         </label>
         <button className={styles.button} type="submit">
           Add designe

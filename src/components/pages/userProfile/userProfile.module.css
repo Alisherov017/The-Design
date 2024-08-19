@@ -1,10 +1,10 @@
+/* userProfile.module.css */
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 1.5rem;
   max-width: 500px;
-  /* height: 900px; */
   margin: 0 auto;
   background: radial-gradient(circle, #ff6ec4, #7873f5);
   border-radius: 30px;
@@ -42,7 +42,7 @@
 
 .h2 {
   font-size: 2rem;
-  /* margin-bottom: 1rem; */
+  margin-bottom: 1rem;
   color: #fff;
   text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
   transform: skew(-8deg) rotate(-3deg);
@@ -69,10 +69,7 @@ form {
   text-transform: uppercase;
 }
 
-input[type="text"],
-input[type="email"],
-textarea,
-input[type="file"] {
+.input {
   width: 100%;
   padding: 0.5rem;
   border: 2px solid #fff;
@@ -83,25 +80,22 @@ input[type="file"] {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-textarea:focus,
-input[type="file"]:focus {
+.input:focus {
   transform: scale(1.05) rotate(-1deg);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-textarea {
+.textarea {
   resize: none;
-  min-height: 80px;
+  min-height: 120px;
 }
 
-input[type="file"] {
+.fileInput {
   padding: 0.3rem 0;
 }
 
-button {
-  background-color: #ff3bd5;
+.button {
+  background-color: #ffeb3b;
   color: #140f0f;
   padding: 0.7rem 1.5rem;
   border: none;
@@ -116,7 +110,7 @@ button {
   overflow: hidden;
 }
 
-button::before {
+.button::before {
   content: "";
   position: absolute;
   top: -50%;
@@ -134,15 +128,15 @@ button::before {
   transform: scale(1.2);
 }
 
-button:hover::before {
+.button:hover::before {
   opacity: 1;
   transform: scale(1);
 }
 
-button:hover {
-  background-color: #ff4f89;
+.button:hover {
+  background-color: #ff4081;
   box-shadow: 0 8px 16px rgba(255, 64, 129, 0.5),
     0 0 20px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.2);
   transform: scale(1.05);
-  color: #121212;
+  color: #ffeb3b;
 }

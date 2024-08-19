@@ -60,7 +60,7 @@ const EditProfile = () => {
     <div className={styles.container}>
       <h2 className={styles.h2}>Edit Profile</h2>
       <form onSubmit={handleSubmit}>
-        <label>
+        <label className={styles.label}>
           <h3>Profile Picture:</h3>
           {formData.user_profile_image && (
             <img
@@ -72,6 +72,7 @@ const EditProfile = () => {
           <input
             type="file"
             name="user_profile_image"
+            className={styles.fileInput}
             onChange={handleChange}
           />
         </label>
@@ -81,36 +82,42 @@ const EditProfile = () => {
             type="text"
             name="user_first_name"
             value={formData.user_first_name || user.first_name}
+            className={styles.input}
             onChange={handleChange}
           />
         </label>
-        <label>
+        <label className={styles.label}>
           <h3>Email:</h3>
           <input
             type="email"
             name="user_email"
             value={formData.user_email || user.email}
+            className={styles.input}
             onChange={handleChange}
           />
         </label>
-        <label>
-          <h3>status_display:</h3>
+        <label className={styles.label}>
+          <h3>Status Display:</h3>
           <input
             type="text"
             name="status_display"
             value={formData.status_display}
+            className={styles.input}
             onChange={handleChange}
           />
         </label>
-        <label>
+        <label className={styles.label}>
           <h3>Description:</h3>
           <textarea
             name="user_descriptions"
             value={formData.user_descriptions}
+            className={styles.textarea}
             onChange={handleChange}
           />
         </label>
-        <button type="submit">Save Changes</button>
+        <button type="submit" className={styles.button}>
+          Save Changes
+        </button>
       </form>
     </div>
   );
