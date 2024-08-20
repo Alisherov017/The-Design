@@ -17,7 +17,11 @@ code {
   text-decoration: none;
 }
 
-.a {
-  color: inherit;
-  text-decoration: none;
+a {
+  color: inherit; /* Основной цвет ссылки */
+  text-decoration: none; /* Убираем подчеркивание */
+}
+
+a:hover {
+  color: inherit; /* Оставляем цвет таким же, как и без наведения */
 }

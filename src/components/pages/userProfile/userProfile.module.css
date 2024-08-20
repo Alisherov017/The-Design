@@ -140,3 +140,11 @@ form {
   transform: scale(1.05);
   color: #ffeb3b;
 }
+
+/* .profileImage {
+  border-radius: 50%;
+  width: 220px;
+  height: 220px;
+  margin-bottom: 10px;
+  margin-left: 20%;
+} */

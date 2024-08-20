@@ -64,7 +64,7 @@ const EditProfile = () => {
           <h3>Profile Picture:</h3>
           {formData.user_profile_image && (
             <img
-              src={URL.createObjectURL(formData.user_profile_image)}
+              src={formData.user_profile_image}
               alt="Profile"
               className={styles.profileImage}
             />

@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Job.module.css";
+import { Link } from "react-router-dom";
 
 const Jobs = () => {
   return (
@@ -11,7 +12,9 @@ const Jobs = () => {
         Dribbble is the heart of the design community and the best resource to
         discover <br /> and connect with designers and jobs worldwide.
       </p>
-      <button className={styles.button}>+ Post a job</button>
+      <Link to="/addProduct">
+        <button className={styles.button}>+ Post a job</button>
+      </Link>
     </div>
   );
 };
